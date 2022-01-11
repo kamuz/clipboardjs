@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, Helvetica,'Segoe UI', sans-serif;
+		}
+		.copy-link {
+			text-align: center;
+			margin: 50px;
+		}
+		.tooltip {
+			position: relative;
+			display: inline-block;
+		}
+
+		.tooltip .tooltiptext {
+			visibility: hidden;
+			width: 120px;
+			background-color: #555;
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px 0;
+			position: absolute;
+			z-index: 1;
+			bottom: 125%;
+			left: 50%;
+			margin-left: -60px;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		.tooltip .tooltiptext::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: #555 transparent transparent transparent;
+		}
+
+		.tooltip.copied .tooltiptext {
+			visibility: visible;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<a href="javascript:void(0)" class="tooltip copy-link" data-clipboard-text="test@gmail.com">Copy link<span class="tooltiptext">Copied</span></a>
+	<script>
+	var clipboard = new ClipboardJS('.copy-link');
+	clipboard.on('success', function(e) {
+		$('.copy-link').addClass('copied');
+		setTimeout(function(){
+			$('.copy-link').removeClass('copied');
+		}, 1000);
+	});
+	</script>
+</body>
+</html>
