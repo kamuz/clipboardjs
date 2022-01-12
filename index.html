@@ -13,10 +13,10 @@
 		.copy-link {
 			text-align: center;
 			margin: 50px;
+			display: block;
 		}
 		.tooltip {
 			position: relative;
-			display: inline-block;
 		}
 
 		.tooltip .tooltiptext {
@@ -55,14 +55,29 @@
 </head>
 <body>
 	<a href="javascript:void(0)" class="tooltip copy-link" data-clipboard-text="test@gmail.com">Copy link<span class="tooltiptext">Copied</span></a>
+
+	<div class="copy-link">
+		<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+		<button class="btn" data-clipboard-action="copy" data-clipboard-target="#foo">Copy</button>
+	</div>
+
+
 	<script>
-	var clipboard = new ClipboardJS('.copy-link');
-	clipboard.on('success', function(e) {
+	var copyLink = new ClipboardJS('.copy-link');
+	copyLink.on('success', function(e) {
 		$('.copy-link').addClass('copied');
 		setTimeout(function(){
 			$('.copy-link').removeClass('copied');
 		}, 1000);
 	});
+
+	var copyField = new ClipboardJS('.btn');
+	copyField.on('success', function(e){
+		$('.copy-link .btn').text('Done');
+		setTimeout(function(){
+			$('.copy-link .btn').text('Copy');
+		}, 1000);
+	})
 	</script>
 </body>
 </html>
