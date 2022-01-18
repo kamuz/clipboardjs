@@ -4,80 +4,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/clipboard.min.js"></script>
-	<style>
-		body {
-			font-family: Arial, Helvetica,'Segoe UI', sans-serif;
-		}
-		.copy-link {
-			text-align: center;
-			margin: 50px;
-			display: block;
-		}
-		.tooltip {
-			position: relative;
-		}
-
-		.tooltip .tooltiptext {
-			visibility: hidden;
-			width: 120px;
-			background-color: #555;
-			color: #fff;
-			text-align: center;
-			border-radius: 6px;
-			padding: 5px 0;
-			position: absolute;
-			z-index: 1;
-			bottom: 125%;
-			left: 50%;
-			margin-left: -60px;
-			opacity: 0;
-			transition: opacity 0.3s;
-		}
-
-		.tooltip .tooltiptext::after {
-			content: "";
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			margin-left: -5px;
-			border-width: 5px;
-			border-style: solid;
-			border-color: #555 transparent transparent transparent;
-		}
-
-		.tooltip.copied .tooltiptext {
-			visibility: visible;
-			opacity: 1;
-		}
-	</style>
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<a href="javascript:void(0)" class="tooltip copy-link" data-clipboard-text="test@gmail.com">Copy link<span class="tooltiptext">Copied</span></a>
+<div class="container">
 
-	<div class="copy-link">
-		<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
-		<button class="btn" data-clipboard-action="copy" data-clipboard-target="#foo">Copy</button>
-	</div>
+<a href="javascript:void(0)" class="tooltip copy-link" data-clipboard-text="test@gmail.com">Copy link<span class="tooltiptext">Copied</span></a>
 
+<div class="copy-link">
+	<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+	<button class="btn" data-clipboard-action="copy" data-clipboard-target="#foo">Copy</button>
+</div>
 
-	<script>
-	var copyLink = new ClipboardJS('.copy-link');
-	copyLink.on('success', function(e) {
-		$('.copy-link').addClass('copied');
-		setTimeout(function(){
-			$('.copy-link').removeClass('copied');
-		}, 1000);
-	});
+<div class="code">
+<button class="btn tooltip" data-clipboard-action="copy" data-clipboard-target=".snippet"><img class="clippy" width="13" src="img/clippy.svg" alt="Copy to clipboard"><span class="tooltiptext">Copied</span></button>
+<pre class="snippet">
+var copyCode = new ClipboardJS('.btn');
+copyCode.on('success', function(e){
+$('.btn').addClass('copied');
+	setTimeout(function(){
+		$('.btn').removeClass('copied');
+	}, 1000);
+});
+</pre>
+</div>
 
-	var copyField = new ClipboardJS('.btn');
-	copyField.on('success', function(e){
-		$('.copy-link .btn').text('Done');
-		setTimeout(function(){
-			$('.copy-link .btn').text('Copy');
-		}, 1000);
-	})
-	</script>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/clipboard.min.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>
